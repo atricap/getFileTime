@@ -8,6 +8,10 @@ import (
 	"golang.org/x/sys/windows"
 )
 
+const (
+	timeLayout string = "2006-01-02 15:04:05.999999999"
+)
+
 func main() {
 	if len(os.Args) != 2 {
 		fmt.Fprintf(os.Stderr, "Usage: getFileTime <file>\n")
@@ -52,8 +56,8 @@ func main() {
 	lastWriteTime := time.Unix(0, lastWriteTimeFt.Nanoseconds())
 
 	fmt.Printf("Creation: %s\nAccess: %s\nModification: %s\n",
-		creationTime.Format("2006-01-02 15:04:05.999999999"),
-		lastAccessTime.Format("2006-01-02 15:04:05.999999999"),
-		lastWriteTime.Format("2006-01-02 15:04:05.999999999"),
+		creationTime.Format(timeLayout),
+		lastAccessTime.Format(timeLayout),
+		lastWriteTime.Format(timeLayout),
 	)
 }
